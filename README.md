@@ -1,5 +1,5 @@
 ## TO-DO APP
->This app is meant to track your daily to-do's so you don't have to cram every little thing in your mind!
+>This app is meant to track your daily to-do's so you don't have to cram every little thing in your mind! Start by signing up/in, then list and save your to-do's!
 
 
 ## TECHNOLOGIES USED
@@ -26,15 +26,18 @@
 
 
 ## ERD LIST
+**Fields**
 1. User
 >userName,
 >password
 
 2. Lists
+**Fields**
 >title
 
 3. Activites
->location
+**Fields**
+>location,
 >description
 
 
@@ -44,7 +47,9 @@
 
 ## GETTING STARTED
 > Log into the app,
-> List in your to-do's
+> Click on the date you'd like to list your to-do
+> List in your to-do('s)
+> Save your to-do
 
 
 ## USER STORIES
@@ -65,6 +70,8 @@
 1. As a user I want to set a deadline for my to-do's so I can get them done in a certain timeframe
 
 2. As a user I want to have a profile picture because I want my profile to be tailored to what I like
+
+3. As a user I want to I want to edit my to-do because I may not want to to that anymore
 
 
 >TIER 3
