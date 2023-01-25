@@ -37,9 +37,9 @@
 
 3. Activites
 **Fields**
+>name,
 >location,
->description
-
+> isComplete
 
 
 ![alt text](images/ERD.png)
