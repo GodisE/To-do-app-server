@@ -18,11 +18,11 @@
 
 ## WIREFRAMES
 >Sign in/up
-![alt text](images/singIn-Up.png)
+![alt text](images/images/singIn-Up.png)
 >After sign in
-![alt text](images/calander.png)
+![alt text](images/images/calander.png)
 >login your to-do
-![alt text](images/to-do.png)
+![alt text](images/images/to-do.png)
 
 
 ## ERD LIST
