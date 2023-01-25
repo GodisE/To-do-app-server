@@ -1,66 +1,62 @@
 const express = require('express')
-const { requireToken } = require('../config/auth')
+const router = express.Router()
+
+// require list model
+const List = require('../models/list')
 const { handle404 } = require('../lib/custom_errors')
-
-const Activity = require("../models/activity")
-
-const route = express.Router()
-
-//INDEX
-// GET /characters
-route.get('/activities',  (req, res, next) => {
-    Activity.find()
-        .then(activities => {
-            // THIS is not Array.protype.map
-            // document method (model method) .map
-            return activities.map(activity => activity)
-        })
-        .then(activities => res.status(200).json({ activities: activities }))
-        .catch(next)
-    })
-
- // SHOW
-// GET /characters/:id
-route.get('/activities/:id', (req, res, next) => {
-    Activity.findById(req.params.id)
-        .then(handle404)
-        .then(activity => res.status(200).json({ activity: activity }))
-        .catch(next)
-})
+const { requireToken } = require('../config/auth')
 
 // CREATE
-// POST /characters
-route.post('/activities', (req, res, next) => {
-    // req.body
-    // character: {}
-    Activity.create(req.body.activity)
-        .then(activity => {
-            // top lvl of this object is character
-            res.status(201).json({ activity: activity })
-        })
-        .catch(next)
-})   
+// POST /lists/
+router.post('/lists', requireToken, (req, res, next) => {
+	const listId = req.body.activity.listId
+
+    const activity = req.body.activity
+    activity.owner = req.user._id
+
+	List.findById(listId)
+		.then(handle404)
+		.then((list) => {
+			list.activities.push(req.body.activity)
+
+			return list.save()
+		})
+
+		.then((list) => res.status(201).json({ list: list }))
+		.catch(next)
+})
 
 // UPDATE
-// PATCH /character/:id
-route.patch("/activities/:id", (req, res, next) => {
-    Activity.findById(req.params.id)
-    //if completed make not complete and vice versa
-    Activity.checked = !Activity.checked
-    res.json(Person)
-    .catch(next)
+// PATCH /lists/:id
+router.patch('/lists/:noteId', requireToken, (req, res, next) => {
+	const listId = req.body.activity.listId
+
+	List.findById(listId)
+		.then(handle404)
+		.then((list) => {
+			const activity = list.lists.id(req.params.noteId)
+			activity.set(req.body.activity)
+			return list.save()
+		})
+		.then(() => res.sendStatus(204))
+		.catch(next)
 })
 
-// DELETE
-// DELETE /characters/:id
-route.delete('/activities/:id', (req, res, next) => {
-    Activity.findById(req.params.id)
-        .then(handle404)
-        .then(activity => {
-            return activity.deleteOne()
-        })
-        .then(() => res.sendStatus(204))
-        .catch(next)
+// DESTROY
+// DELETE /lists/:id
+router.delete('/lists/:noteId', requireToken, (req, res, next) => {
+	const listId = req.body.activity.listId
+
+	List.findById(listId)
+		.then(handle404)
+		.then((list) => {
+			list.lists.id(req.params.noteId).remove()
+
+			return list.save()
+		})
+		.then(() => res.sendStatus(204))
+		.catch(next)
 })
 
-module.exports = route
+module.exports = router
+

@@ -1,4 +1,5 @@
-const express = require("express")
+//subdoc
+
 
 const mongoose = require("mongoose")
 
@@ -18,10 +19,15 @@ const activitySchema = new Schema (
             type: Boolean,
             required: true
         },
+        owner: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+
 
     }
 )
 
-// const Activity = mongoose.model("Activity", activitySchema)
+
 
 module.exports = activitySchema
