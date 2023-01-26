@@ -7,8 +7,8 @@ const { handle404 } = require('../lib/custom_errors')
 const { requireToken } = require('../config/auth')
 
 // CREATE
-// POST /lists/
-router.post('/lists', requireToken, (req, res, next) => {
+// POST /activities/
+router.post('/list', requireToken, (req, res, next) => {
 	const listId = req.body.activity.listId
 
     const activity = req.body.activity
@@ -27,14 +27,14 @@ router.post('/lists', requireToken, (req, res, next) => {
 })
 
 // UPDATE
-// PATCH /lists/:id
-router.patch('/lists/:noteId', requireToken, (req, res, next) => {
+// PATCH /activities/:id
+router.patch('/list/:activityId', requireToken, (req, res, next) => {
 	const listId = req.body.activity.listId
 
 	List.findById(listId)
 		.then(handle404)
 		.then((list) => {
-			const activity = list.lists.id(req.params.noteId)
+			const activity = list.activities.id(req.params.activityId)
 			activity.set(req.body.activity)
 			return list.save()
 		})
@@ -43,14 +43,14 @@ router.patch('/lists/:noteId', requireToken, (req, res, next) => {
 })
 
 // DESTROY
-// DELETE /lists/:id
-router.delete('/lists/:noteId', requireToken, (req, res, next) => {
+// DELETE /activities/:id
+router.delete('/list/:activityId', requireToken, (req, res, next) => {
 	const listId = req.body.activity.listId
 
 	List.findById(listId)
 		.then(handle404)
 		.then((list) => {
-			list.lists.id(req.params.noteId).remove()
+			list.activities.id(req.params.activityId).remove()
 
 			return list.save()
 		})

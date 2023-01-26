@@ -10,7 +10,7 @@ const route = express.Router()
 
 //INDEX
 // GET /characters
-route.get('/lists',  (req, res, next) => {
+route.get('/lists', requireToken,  (req, res, next) => {
     List.find()
         .then(lists => {
             // THIS is not Array.protype.map
@@ -23,7 +23,7 @@ route.get('/lists',  (req, res, next) => {
 
  // SHOW
 // GET /characters/:id
-route.get('/lists/:id', (req, res, next) => {
+route.get('/lists/:id', requireToken, (req, res, next) => {
     List.findById(req.params.id)
         .then(handle404)
         .then(list => res.status(200).json({ list: list }))
@@ -45,17 +45,20 @@ route.post('/lists', (req, res, next) => {
 
 // UPDATE
 // PATCH /character/:id
-route.patch("/lists/:id", (req, res, next) => {
-    List.findById(req.params.id)
-    //if completed make not complete and vice versa
-    List.checked = !List.checked
-    res.json(Person)
-    .catch(next)
+route.patch('/lists/:id', requireToken, (req, res, next) => {
+	List.findById(req.params.id)
+		.then(handle404)
+		.then((list) => {
+			return list.updateOne(req.body.list)
+		})
+		.then(() => res.sendStatus(204))
+		.catch(next)
 })
+
 
 // DELETE
 // DELETE /characters/:id
-route.delete('/lists/:id', (req, res, next) => {
+route.delete('/lists/:id', requireToken, (req, res, next) => {
     List.findById(req.params.id)
         .then(handle404)
         .then(list => {
