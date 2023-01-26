@@ -34,6 +34,21 @@ app.use(activityRoutes)
 app.use(userRoutes)
 app.use(listRoutes)
 
+
+app.get("/", (req, res, next) => {
+	res.send("<h1>This is the root of my page</h1>")
+})
+
+app.get("/sign-in", (req, res, next) => {
+	res.send("<h1>This is the sign in pg</h1>")
+})
+	
+
+
+app.get("/lists", (req, res, next) => {
+	res.send("<h1>This is where my lists will be</h1>")
+})
+
 app.listen(PORT, () => {
 	console.log('listening on port ' + PORT)
 })
