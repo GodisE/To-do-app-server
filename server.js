@@ -10,7 +10,7 @@ const db = require('./config/db')
 const activityRoutes = require("./routes/activity_routes")
 const userRoutes = require("./routes/user_routes")
 const listRoutes = require("./routes/list_routes")
-
+const requestLogger = require("./lib/request_logger")
 const PORT = 8000
 
 mongoose.set('strictQuery', true)
@@ -23,8 +23,13 @@ mongoose.connect(db, {
 
 // Using the express function create an express app
 const app = express()
-app.use(express.json())
 
+app.use(cors({ origin: `http://127.0.0.1:5501` }))
+
+
+
+app.use(express.json())
+app.use(requestLogger)
 app.use(activityRoutes)
 app.use(userRoutes)
 app.use(listRoutes)
