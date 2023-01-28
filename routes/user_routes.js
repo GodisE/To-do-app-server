@@ -35,6 +35,7 @@ route.post("/sign-in", (req, res, next) => {
     User.findOne({ userName: req.body.credentials.userName })
     .then(user => createUserToken(req, user))
     .then(token => res.json({ token: token }))
+
     .catch(next)
 })
 
