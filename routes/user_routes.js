@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt")
 const User = require("../models/user")
 
 const { createUserToken } = require("../config/auth")
-
+const { requireToken } = require('../config/auth')
 // i want to go to /sign-up
 //cannot sign in unless i create a user
 //post
@@ -34,6 +34,16 @@ route.post("/sign-in", (req, res, next) => {
     //finding the user by the userName
     User.findOne({ userName: req.body.credentials.userName })
     .then(user => createUserToken(req, user))
+    .then(token => res.json({ token: token }))
+
+    .catch(next)
+})
+
+
+route.get("/sign-out", (req, res, next) => {
+    //finding the user by the userName
+    User.logOut({ userName: req.body.credentials.userName })
+    .then(user => requireToken(req, user))
     .then(token => res.json({ token: token }))
 
     .catch(next)

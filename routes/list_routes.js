@@ -1,8 +1,11 @@
 const express = require('express')
 const { requireToken } = require('../config/auth')
 const { handle404 } = require('../lib/custom_errors')
+const mongoose = require('../config/connection')
 
 const List = require("../models/list")
+
+const db = mongoose.connection
 
 const route = express.Router()
 
@@ -68,4 +71,6 @@ route.delete('/lists/:id', requireToken, (req, res, next) => {
         .catch(next)
 })
 
+
 module.exports = route
+

@@ -5,6 +5,16 @@ const router = express.Router()
 const List = require('../models/list')
 const { handle404 } = require('../lib/custom_errors')
 const { requireToken } = require('../config/auth')
+const { default: mongoose } = require('mongoose')
+const Mongoose = require("../config/connection")
+
+const db = Mongoose.connection
+
+const userListId = process.argv[2]
+const nameinput = process.argv[3]
+const locationInput = process.argv[4]
+const isCompleteInput = process.argv[5]
+
 
 // CREATE
 // POST /activities/
@@ -25,6 +35,8 @@ router.post('/list', requireToken, (req, res, next) => {
 		.then((list) => res.status(201).json({ list: list }))
 		.catch(next)
 })
+
+
 
 // UPDATE
 // PATCH /activities/:id
@@ -59,4 +71,3 @@ router.delete('/list/:activityId', requireToken, (req, res, next) => {
 })
 
 module.exports = router
-
