@@ -35,8 +35,8 @@ route.get('/lists/:id', requireToken, (req, res, next) => {
 
 // CREATE
 // POST /characters
-route.post('/lists', (req, res, next) => {
-    // req.body
+route.post('/lists',requireToken, (req, res, next) => {
+    req.body.list.owner = req.user._id
     // character: {}
     List.create(req.body.list)
         .then(list => {

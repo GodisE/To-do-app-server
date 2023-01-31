@@ -8,12 +8,7 @@ const { requireToken } = require('../config/auth')
 const { default: mongoose } = require('mongoose')
 const Mongoose = require("../config/connection")
 
-const db = Mongoose.connection
 
-const userListId = process.argv[2]
-const nameinput = process.argv[3]
-const locationInput = process.argv[4]
-const isCompleteInput = process.argv[5]
 
 
 // CREATE
