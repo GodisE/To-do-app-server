@@ -40,14 +40,7 @@ route.post("/sign-in", (req, res, next) => {
 })
 
 
-// route.get("/sign-out", (req, res, next) => {
-//     //finding the user by the userName
-//     User.logOut({ userName: req.body.credentials.userName })
-//     .then(user => requireToken(req, user))
-//     .then(token => res.json({ token: token }))
 
-//     .catch(next)
-// })
 
 
 module.exports = route

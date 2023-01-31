@@ -12,7 +12,6 @@ const listSchema = new Schema (
         },
         activities: [activitySchema]
         
-        
     }, 
     {
         timestamps: true,
