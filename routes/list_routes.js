@@ -51,7 +51,7 @@ route.post('/lists',requireToken, (req, res, next) => {
 route.patch('/lists/:id', requireToken, (req, res, next) => {
 	List.findById(req.params.id)
 		.then(handle404)
-		.then((list) => {
+		.then(list => {
 			return list.updateOne(req.body.list)
 		})
 		.then(() => res.sendStatus(204))

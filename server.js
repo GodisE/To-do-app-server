@@ -39,41 +39,41 @@ app.use(listRoutes)
 app.use("/seed" ,listSeed)
 app.use("/seed", actSeed)
 
-app.get("/", (req, res, next) => {
-	res.send("<h1>This is the root of my page</h1>")
-})
+// app.get("/", (req, res, next) => {
+// 	res.send("<h1>This is the root of my page</h1>")
+// })
 
-app.get("/sign-in", (req, res, next) => {
-	res.send("<h1>This is the sign in pg</h1>")
-})
+// app.get("/sign-in", (req, res, next) => {
+// 	res.send("<h1>This is the sign in pg</h1>")
+// })
 	
-app.get("/sign-up", (req, res, next) => {
-	res.send("<h1>This is the sign up pg</h1>")
-})
+// app.get("/sign-up", (req, res, next) => {
+// 	res.send("<h1>This is the sign up pg</h1>")
+// })
 
-app.get("/list", (req, res, next) => {
-	res.send("<h1>This is the activity page</h1>")
-})
+// app.get("/list", (req, res, next) => {
+// 	res.send("<h1>This is the activity page</h1>")
+// })
 
-app.get("/lists", (req, res, next) => {
-	res.send("<h1>This is where my lists will be</h1>")
-})
+// app.get("/lists", (req, res, next) => {
+// 	res.send("<h1>This is where my lists will be</h1>")
+// })
 
-app.get("/list/:activityId", (req, res, next) => {
-	res.send("<h1>Update, Show, Delete activity</h1>")
-})
+// app.get("/list/:activityId", (req, res, next) => {
+// 	res.send("<h1>Update, Show, Delete activity</h1>")
+// })
 
-app.get("/list/:activityId", (req, res, next) => {
-	res.send("<h1>Update, Show, Delete activity</h1>")
-})
+// app.get("/list/:activityId", (req, res, next) => {
+// 	res.send("<h1>Update, Show, Delete activity</h1>")
+// })
 
-app.get("/lists/:id", (req, res, next) => {
-	res.send("<h1>Update, Show, Delete list</h1>")
-})
+// app.get("/lists/:id", (req, res, next) => {
+// 	res.send("<h1>Update, Show, Delete list</h1>")
+// })
 
-app.get("/lists", (req, res, next) => {
-	res.send("<h1>Create, Update list</h1>")
-})
+// app.get("/lists", (req, res, next) => {
+// 	res.send("<h1>Create, Update list</h1>")
+// })
 
 app.listen(PORT, () => {
 	console.log('listening on port ' + PORT)
