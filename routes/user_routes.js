@@ -11,8 +11,7 @@ const { createUserToken } = require("../config/auth")
 //post
 route.post("/sign-up", (req, res, next) => {
     //i want to hash the pw im getting from user
-    bcrypt
-        .hash(req.body.credentials.password, 10)
+    bcrypt.hash(req.body.credentials.password, 10)
         .then(hashedPassword => {
             //we want to return an object that'll represent the user and replace pw w hashed pw
             return {

@@ -8,14 +8,14 @@ const List = require("../models/list")
 const db = mongoose.connection
 
 const route = express.Router()
-    
+
 
 
 //INDEX
 // GET /characters
 route.get('/lists', requireToken,  (req, res, next) => {
-const userId = req.user._id
-    List.find({ owner:userId })
+    const userId = req.user._id
+    List.find( {owner:userId} )
         .then(lists => {
             // THIS is not Array.protype.map
             // document method (model method) .map
@@ -28,7 +28,8 @@ const userId = req.user._id
  // SHOW
 // GET /characters/:id
 route.get('/lists/:id', requireToken, (req, res, next) => {
-    List.findById(owner = req.user._id)
+    req.body.list.owner = req.user._id
+    List.findById(req.params.id)
         .then(handle404)
         .then(list => res.status(200).json({ list: list }))
         .catch(next)
@@ -37,9 +38,9 @@ route.get('/lists/:id', requireToken, (req, res, next) => {
 // CREATE
 // POST /characters
 route.post('/lists',requireToken, (req, res, next) => {
-   
+    req.body.list.owner = req.user._id
     // character: {}
-    List.create( req.body.list.owner = req.user._id)
+    List.create(req.body.list)
         .then(list => {
             // top lvl of this object is character
             res.status(201).json({ list: list })
@@ -50,7 +51,8 @@ route.post('/lists',requireToken, (req, res, next) => {
 // UPDATE
 // PATCH /character/:id
 route.patch('/lists/:id', requireToken, (req, res, next) => {
-	List.findById( req.body.list.owner = req.user._id)
+    req.body.list.owner = req.user._id
+	List.findById(req.params.id)
 		.then(handle404)
 		.then((list) => {
 			return list.updateOne(req.body.list)
@@ -63,7 +65,8 @@ route.patch('/lists/:id', requireToken, (req, res, next) => {
 // DELETE
 // DELETE /characters/:id
 route.delete('/lists/:id', requireToken, (req, res, next) => {
-    List.findById( req.body.list.owner = req.user._id)
+    req.body.list.owner = req.user._id
+    List.findById(req.params.id)
         .then(handle404)
         .then(list => {
             return list.deleteOne()
