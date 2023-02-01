@@ -10,7 +10,14 @@ const listSchema = new Schema (
             type: String,
             required: true
         },
-        activities: [activitySchema]
+        activities: [activitySchema],
+        owner: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+
+   
+        }
+
         
     }, 
     {
