@@ -28,7 +28,8 @@ route.get('/lists', requireToken,  (req, res, next) => {
  // SHOW
 // GET /characters/:id
 route.get('/lists/:id', requireToken, (req, res, next) => {
-    req.body.list.owner = req.user._id
+    
+    // req.body.list.owner = req.user._id
     List.findById(req.params.id)
         .then(handle404)
         .then(list => res.status(200).json({ list: list }))
@@ -51,7 +52,7 @@ route.post('/lists',requireToken, (req, res, next) => {
 // UPDATE
 // PATCH /character/:id
 route.patch('/lists/:id', requireToken, (req, res, next) => {
-    req.body.list.owner = req.user._id
+    // req.body.list.owner = req.user._id
 	List.findById(req.params.id)
 		.then(handle404)
 		.then((list) => {
@@ -65,7 +66,7 @@ route.patch('/lists/:id', requireToken, (req, res, next) => {
 // DELETE
 // DELETE /characters/:id
 route.delete('/lists/:id', requireToken, (req, res, next) => {
-    req.body.list.owner = req.user._id
+    // req.body.list.owner = req.user._id
     List.findById(req.params.id)
         .then(handle404)
         .then(list => {
