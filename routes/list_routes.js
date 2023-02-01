@@ -5,17 +5,17 @@ const mongoose = require('../config/connection')
 
 const List = require("../models/list")
 
+const db = mongoose.connection
 
 const route = express.Router()
-
+    
 
 
 //INDEX
 // GET /characters
 route.get('/lists', requireToken,  (req, res, next) => {
-    const userId = req.user._id
-    List.find({ owner: userId })
-    
+const userId = req.user._id
+    List.find({ owner:userId })
         .then(lists => {
             // THIS is not Array.protype.map
             // document method (model method) .map
@@ -28,8 +28,7 @@ route.get('/lists', requireToken,  (req, res, next) => {
  // SHOW
 // GET /characters/:id
 route.get('/lists/:id', requireToken, (req, res, next) => {
-  
-    List.findById({ owner: userId })
+    List.findById(owner = req.user._id)
         .then(handle404)
         .then(list => res.status(200).json({ list: list }))
         .catch(next)
@@ -40,8 +39,7 @@ route.get('/lists/:id', requireToken, (req, res, next) => {
 route.post('/lists',requireToken, (req, res, next) => {
    
     // character: {}
-    List.create({ owner: userId })
-    List.owner = user._id
+    List.create( req.body.list.owner = req.user._id)
         .then(list => {
             // top lvl of this object is character
             res.status(201).json({ list: list })
@@ -51,11 +49,10 @@ route.post('/lists',requireToken, (req, res, next) => {
 
 // UPDATE
 // PATCH /character/:id
-route.patch('/lists/:id', requireToken, ({ owner: userId }) => {
-   
-	List.findById(req.params.id)
+route.patch('/lists/:id', requireToken, (req, res, next) => {
+	List.findById( req.body.list.owner = req.user._id)
 		.then(handle404)
-		.then(list => {
+		.then((list) => {
 			return list.updateOne(req.body.list)
 		})
 		.then(() => res.sendStatus(204))
@@ -65,9 +62,8 @@ route.patch('/lists/:id', requireToken, ({ owner: userId }) => {
 
 // DELETE
 // DELETE /characters/:id
-route.delete('/lists/:id', requireToken, ({ owner: userId }) => {
-
-    List.findById(req.params.id)
+route.delete('/lists/:id', requireToken, (req, res, next) => {
+    List.findById( req.body.list.owner = req.user._id)
         .then(handle404)
         .then(list => {
             return list.deleteOne()

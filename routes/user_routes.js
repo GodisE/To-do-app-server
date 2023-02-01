@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt")
 const User = require("../models/user")
 
 const { createUserToken } = require("../config/auth")
-const { requireToken } = require('../config/auth')
+
 // i want to go to /sign-up
 //cannot sign in unless i create a user
 //post
