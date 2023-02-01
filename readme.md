@@ -14,15 +14,14 @@
 9. Passport
 10. Passport-Jwt
 11. Node
+12. Bootstrap
 
 
 ## WIREFRAMES
 >Sign in/up
-![alt text](images/singIn-Up.png)
->After sign in
-![alt text](images/calander.png)
+![alt text](/images/Signin.png)
 >login your to-do
-![alt text](images/to-do.png)
+![alt text](/images/todopage.png)
 
 
 ## ERD LIST
@@ -44,15 +43,27 @@
 > description
 
 
+![alt text](/images/ERd.png)
 
-![alt text](images/ErD.png)
+## ROUTES TABLE
+
+| Name        | Path        | Http Verb   | Purpose         |
+|-------------|-------------|-------------|-----------------|
+| Index       | /lists      | GET         |Display all lists|
+| Show        | /lists/:id  | GET         |Display one list |
+| Create      | /lists      | POST        |Create one list  |
+| Update      | /lists/:id  | PATCH       |Update one list  |
+| Delete      | /lists/:id  | DELETE      |Delete one list  |
+
+
+
+
 
 
 ## GETTING STARTED
 > Log into the app,
-> Click on the date you'd like to list your to-do
 > List in your to-do('s)
-> Save your to-do
+
 
 
 ## USER STORIES
@@ -60,22 +71,21 @@
 
 > TIER 1
 1. As a user I want to login the app
-2. As a user I want to logout of the app
-3. As a user I want to know I've successfully logged in
-4. As a user I want to know I've successfully logged out
-5. As a user I want to see my to-dos because I want to know that the app is doing as advertised
-6. As a user I want to know when I've completed a to-do so that i can keep track of how many things I have to do and how many things I've done
-7. As a user I want to see my login page 
-8. As a user I want to see my to-do page 
-
+2. As a user I want to know I've successfully logged in
+3. As a user I want to see my to-dos because I want to know that the app is doing as advertised
+4. As a user I want to see my login page 
+5. As a user I want to see my to-do page 
+6. As a user I want to be able to update my lists
+7. as a user I want to update lists
+8. As a user, I want to see an individual list and id
+9. As a user I want to be able to update my lists
 
 >Tier 2
 1. As a user I want to set a deadline for my to-do's so I can get them done in a certain timeframe
-
-2. As a user I want to have a profile picture because I want my profile to be tailored to what I like
-
-3. As a user I want to I want to edit my to-do because I may not want to to that anymore
-
+2. As a user I want to logout of the app
+3. As a user I want to have a profile picture because I want my profile to be tailored to what I like
+4. As a user I want to I want to edit my to-do because I may not want to to that anymore
 
 >TIER 3
 1. customizable avatars for profile pics because I want my profile to be more fun and interactive
+2. As a user I want profile pics
