@@ -1,3 +1,4 @@
+// Remove random blank lines from this file
 const mongoose = require("mongoose")
 const activitySchema = require("./activity")
 
@@ -13,6 +14,7 @@ const listSchema = new Schema (
         activities: [activitySchema],
         owner: {
             type: mongoose.Schema.Types.ObjectId,
+            // use double quotes here to fit with the rest of your coding style
             ref: 'User',
 
    

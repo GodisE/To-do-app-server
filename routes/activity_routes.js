@@ -1,3 +1,4 @@
+// Remove random blank lines from this file
 const express = require('express')
 const router = express.Router()
 
@@ -5,11 +6,12 @@ const router = express.Router()
 const List = require('../models/list')
 const { handle404 } = require('../lib/custom_errors')
 const { requireToken } = require('../config/auth')
+// Remove `mongoose` imports
 const { default: mongoose } = require('mongoose')
 const Mongoose = require("../config/connection")
 
 
-
+// When naming routes you should always name them after the entity that we are working with. This file is for the activity routes but the routes here are all going to `/list`. They should be going to `/activities`. Also you already have a `/lists` route so having a `/list` route without the `s` could get very confusing.
 
 // CREATE
 // POST /activities/
