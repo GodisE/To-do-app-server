@@ -1,17 +1,21 @@
 const express = require('express')
 const { requireToken } = require('../config/auth')
 const { handle404 } = require('../lib/custom_errors')
+// Remove mongoose require here
 const mongoose = require('../config/connection')
 
 const List = require("../models/list")
 
+// remove this connection. We are not connecting here we are connecting in server.js
 const db = mongoose.connection
 
+// should be `router`
 const route = express.Router()
 
 
 
 //INDEX
+// this comment does not match what is going on here. When copying and pasting make sure you update everything
 // GET /characters
 route.get('/lists', requireToken,  (req, res, next) => {
     const userId = req.user._id
@@ -78,4 +82,3 @@ route.delete('/lists/:id', requireToken, (req, res, next) => {
 
 
 module.exports = route
-
